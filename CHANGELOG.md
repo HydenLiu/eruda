@@ -1,3 +1,9 @@
+## 3.5.1 (08 Jul 2026)
+
+* chore: switch publish pipeline to npm trusted publishing with OIDC
+* chore: commit package-lock.json and use npm ci in CI
+* chore: bump CI node version to 22
+
 ## 3.5.0 (11 Jun 2026)
 
 * feat(network): restructure detail view with General, Query Parameters, Payload, and Response Body sections
