@@ -21,7 +21,7 @@ jobs:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
       - run: |
-          npm i -g @liriliri/lsla
+          npm i -g @liriliri/lsla npm@latest
           npm ci
           npm run build
       - working-directory: dist
