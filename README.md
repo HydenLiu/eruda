@@ -8,6 +8,8 @@
 
 <div align="center">
 
+forked form [eruda](https://github.com/liriliri/eruda) and [iulo/eruda](https://github.com/iulo/eruda/tree/master)
+
 Console for Mobile Browsers.
 
 [![NPM version][npm-image]][npm-url]
