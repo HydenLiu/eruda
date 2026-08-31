@@ -1,5 +1,5 @@
 {
-  "name": "@iulo/eruda",
+  "name": "@hydenliu/eruda",
   "version": "3.5.1",
   "description": "Console for Mobile Browsers",
   "main": "eruda.js",
@@ -22,19 +22,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iulo/eruda.git"
+    "url": "git+https://github.com/hydenliu/eruda.git"
   },
   "keywords": [
     "console",
     "mobile",
     "debug"
   ],
-  "author": "iulo",
+  "author": "hydenliu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iulo/eruda/issues"
+    "url": "https://github.com/hydenliu/eruda/issues"
   },
-  "homepage": "https://github.com/iulo/eruda",
+  "homepage": "https://github.com/hydenliu/eruda",
   "publishConfig": {
     "access": "public"
   },
