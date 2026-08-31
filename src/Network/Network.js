@@ -356,6 +356,10 @@ export default class Network extends Tool {
       }
     })
 
+    this._$requests.on('click', '.luna-data-grid-node td:first-child', () => {
+      this._showDetail()
+    })
+
     requestDataGrid.on('deselect', () => {
       this._selectedRequest = null
       this._updateButtons()

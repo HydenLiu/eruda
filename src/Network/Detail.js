@@ -126,7 +126,7 @@ export default class Detail extends Emitter {
           url: data.url,
         })
       })
-      .on('click', c('.http .data'), () => {
+      .on('click', c('.http .payload-raw'), () => {
         const data = this._detailData
         const headers = data.reqHeaders || {}
         const reqType = getType(
