@@ -61,6 +61,15 @@ describe('devTools', function () {
         done()
       }, 500)
     })
+
+    it('hide on outside click', function (done) {
+      eruda.show()
+      document.body.click()
+      setTimeout(function () {
+        expect($('.eruda-dev-tools')).toBeHidden()
+        done()
+      }, 500)
+    })
   })
 
   describe('scale', function () {

@@ -292,8 +292,8 @@ export default {
       'console',
       'elements',
       'network',
-      'resources',
       'sources',
+      'resources',
       'info',
       'snippets',
     ]

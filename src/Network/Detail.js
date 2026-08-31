@@ -8,6 +8,7 @@ import isJson from 'licia/isJson'
 import Emitter from 'licia/Emitter'
 import truncate from 'licia/truncate'
 import { classPrefix as c } from '../lib/util'
+import { getType } from './util'
 
 export default class Detail extends Emitter {
   constructor($container, devtools) {
@@ -123,33 +124,6 @@ export default class Detail extends Emitter {
   _bindEvent() {
     const devtools = this._devtools
 
-    this._$container
-      .on('click', c('.back'), () => this.hide())
-      .on('click', c('.copy-res'), this._copyRes)
-      .on('click', c('.http .response'), () => {
-        const data = this._detailData
-        const resTxt = data.resTxt
-
-        if (isJson(resTxt)) {
-          return showSources('object', resTxt)
-        }
-
-        switch (data.subType) {
-          case 'css':
-            return showSources('css', resTxt)
-          case 'html':
-            return showSources('html', resTxt)
-          case 'javascript':
-            return showSources('js', resTxt)
-          case 'json':
-            return showSources('object', resTxt)
-        }
-        switch (data.type) {
-          case 'image':
-            return showSources('img', data.url)
-        }
-      })
-
     const showSources = (type, data) => {
       const sources = devtools.get('sources')
       if (!sources) {
@@ -160,6 +134,50 @@ export default class Detail extends Emitter {
 
       devtools.showTool('sources')
     }
+
+    const openInSources = (text, { type, subType, url } = {}) => {
+      if (text && isJson(text)) {
+        return showSources('object', text)
+      }
+
+      switch (subType) {
+        case 'css':
+          return showSources('css', text)
+        case 'html':
+          return showSources('html', text)
+        case 'javascript':
+          return showSources('js', text)
+        case 'json':
+          return showSources('object', text)
+      }
+      switch (type) {
+        case 'image':
+          return showSources('img', url)
+      }
+      if (text) {
+        return showSources('raw', text)
+      }
+    }
+
+    this._$container
+      .on('click', c('.back'), () => this.hide())
+      .on('click', c('.copy-res'), this._copyRes)
+      .on('click', c('.http .response'), () => {
+        const data = this._detailData
+        openInSources(data.resTxt, {
+          type: data.type,
+          subType: data.subType,
+          url: data.url,
+        })
+      })
+      .on('click', c('.http .data'), () => {
+        const data = this._detailData
+        const headers = data.reqHeaders || {}
+        const reqType = getType(
+          headers['Content-Type'] || headers['content-type'] || ''
+        )
+        openInSources(data.data, reqType && reqType.type ? reqType : {})
+      })
   }
 }
 

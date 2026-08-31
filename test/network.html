@@ -8,6 +8,7 @@
     />
     <title>Network</title>
     <link rel="stylesheet" href="lib/jasmine.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="lib/jquery.js"></script>
     <script src="lib/jasmine.js"></script>
     <script src="lib/jasmine-html.js"></script>
@@ -16,8 +17,60 @@
     <script src="util.js"></script>
   </head>
   <body>
+    <header>Network</header>
+    <nav>
+      <ul>
+        <li>
+          <a href="#" id="post-json">POST JSON</a>
+        </li>
+        <li>
+          <a href="#" id="post-form">POST Form</a>
+        </li>
+        <li>
+          <a href="#" id="post-text">POST Text</a>
+        </li>
+      </ul>
+    </nav>
     <script>
-      boot('network')
+      function sendPost(contentType, body) {
+        return fetch(location.href, {
+          method: 'POST',
+          headers: { 'Content-Type': contentType },
+          body: body,
+        }).catch(function () {})
+      }
+
+      function addClick(id, fn) {
+        document.getElementById(id).addEventListener(
+          'click',
+          function (e) {
+            e.preventDefault()
+            fn()
+          },
+          false
+        )
+      }
+
+      addClick('post-json', function () {
+        sendPost(
+          'application/json',
+          JSON.stringify({ foo: 1, bar: 'hello', nested: { ok: true } })
+        )
+      })
+      addClick('post-form', function () {
+        sendPost('application/x-www-form-urlencoded', 'foo=1&bar=hello')
+      })
+      addClick('post-text', function () {
+        sendPost('text/plain', 'plain request body')
+      })
+
+      boot('network', function () {
+        eruda.add(new eruda.Sources())
+        sendPost(
+          'application/json',
+          JSON.stringify({ foo: 1, bar: 'hello', nested: { ok: true } })
+        )
+      })
     </script>
   </body>
 </html>

@@ -68,9 +68,9 @@
       border-bottom: 1px solid var(--border);
       .url {
         font-size: $font-size-s;
-        overflow: hidden;
+        overflow-x: auto;
+        user-select: text;
         white-space: nowrap;
-        text-overflow: ellipsis;
         width: 100%;
         display: inline-block;
       }

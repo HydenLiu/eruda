@@ -74,6 +74,7 @@ export default class DevTools extends Emitter {
       this._$el.css('opacity', this._opacity)
     }, 50)
 
+    this._bindClickOutside()
     this.emit('show')
 
     return this
@@ -84,6 +85,7 @@ export default class DevTools extends Emitter {
     }
 
     this._isShow = false
+    this._unbindClickOutside()
     this.emit('hide')
 
     this._$el.css({ opacity: 0 })
@@ -254,8 +256,32 @@ export default class DevTools extends Emitter {
     this.removeAll()
     this._tab.destroy()
     this._$el.remove()
+    this._unbindClickOutside()
     window.removeEventListener('resize', this._checkSafeArea)
     emitter.off(emitter.SCALE, this._updateTabHeight)
+  }
+  _bindClickOutside() {
+    if (this._inline) return
+    this._unbindClickOutside()
+    document.addEventListener('click', this._onClickOutside, true)
+  }
+  _unbindClickOutside() {
+    document.removeEventListener('click', this._onClickOutside, true)
+  }
+  _onClickOutside = (e) => {
+    if (!this._isShow) return
+
+    const isInside = (el) => {
+      if (!el) return false
+      if (typeof e.composedPath === 'function') {
+        return e.composedPath().indexOf(el) > -1
+      }
+      return el.contains(e.target)
+    }
+
+    if (isInside(this.$container.get(0))) return
+
+    this.hide()
   }
   _checkSafeArea = () => {
     const { $container } = this
