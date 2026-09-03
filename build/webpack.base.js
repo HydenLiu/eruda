@@ -44,8 +44,8 @@ module.exports = {
     static: {
       directory: path.join(__dirname, '../test'),
     },
-    port: 8080,
-    server: 'https',
+    port: 8081,
+    // server: 'https',
   },
   output: {
     path: path.resolve(__dirname, '../dist'),

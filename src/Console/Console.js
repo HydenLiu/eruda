@@ -190,7 +190,7 @@ export default class Console extends Tool {
       lazyEvaluation: cfg.get('lazyEvaluation'),
     })
 
-    logger.on('optionChange', (name, val) => {
+    logger.on('changeOption', (name, val) => {
       switch (name) {
         case 'level':
           $level.each(function () {
