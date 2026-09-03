@@ -1,3 +1,13 @@
+## 3.5.2 (03 Sep 2026)
+
+* feat: hide DevTools when clicking outside the panel
+* feat: add luna-dom-highlighter
+* fix: Network Detail payload click and open detail from request name
+* fix: Console settings not syncing after luna-console option event rename
+* chore: republish as @hydenliu/eruda
+* chore: add missing terser-webpack-plugin dependency
+* fix(ci): upgrade npm for trusted publishing support
+
 ## 3.5.1 (08 Jul 2026)
 
 * chore: switch publish pipeline to npm trusted publishing with OIDC
