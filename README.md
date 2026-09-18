@@ -4,84 +4,89 @@
   </a>
 </div>
 
-<h1 align="center">Eruda</h1>
+<h1 align="center">@hydenliu/eruda</h1>
 
 <div align="center">
 
-forked form [eruda](https://github.com/liriliri/eruda) and [iulo/eruda](https://github.com/iulo/eruda/tree/master)
-
 Console for Mobile Browsers.
 
+Fork of [liriliri/eruda](https://github.com/liriliri/eruda), based on [iulo/eruda](https://github.com/iulo/eruda).
+
 [![NPM version][npm-image]][npm-url]
-[![Build status][ci-image]][ci-url]
-[![Test coverage][codecov-image]][codecov-url]
-[![Downloads][jsdelivr-image]][jsdelivr-url]
 [![License][license-image]][npm-url]
 
 </div>
 
-[npm-image]: https://img.shields.io/npm/v/eruda?style=flat-square
-[npm-url]: https://npmjs.org/package/eruda
-[jsdelivr-image]: https://img.shields.io/jsdelivr/npm/hm/eruda?style=flat-square
-[jsdelivr-url]: https://www.jsdelivr.com/package/npm/eruda
-[ci-image]: https://img.shields.io/github/actions/workflow/status/liriliri/eruda/main.yml?branch=master&style=flat-square
-[ci-url]: https://github.com/liriliri/eruda/actions/workflows/main.yml 
-[codecov-image]: https://img.shields.io/codecov/c/github/liriliri/eruda?style=flat-square
-[codecov-url]: https://codecov.io/github/liriliri/eruda?branch=master
-[license-image]: https://img.shields.io/npm/l/eruda?style=flat-square
-[donate-image]: https://img.shields.io/badge/$-donate-0070ba.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/@hydenliu/eruda?style=flat-square
+[npm-url]: https://www.npmjs.com/package/@hydenliu/eruda
+[ci-image]: https://img.shields.io/github/actions/workflow/status/HydenLiu/eruda/main.yml?branch=master&style=flat-square
+[ci-url]: https://github.com/HydenLiu/eruda/actions/workflows/main.yml
+[license-image]: https://img.shields.io/npm/l/@hydenliu/eruda?style=flat-square
 
 <img src="https://eruda.liriliri.io/screenshot.jpg" style="width:100%">
 
-## Demo
-
-![Demo](https://eruda.liriliri.io/qrcode.png)
-
-Browse it on your phone: [eruda.liriliri.io](https://eruda.liriliri.io/)
-
 ## Install
 
-You can get it on npm.
+```bash
+npm install @hydenliu/eruda --save-dev
+```
+
+```html
+<script src="node_modules/@hydenliu/eruda/eruda.js"></script>
+<script>
+  eruda.init()
+</script>
+```
+
+CDN:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@hydenliu/eruda"></script>
+<script>
+  eruda.init()
+</script>
+```
+
+Usage matches upstream Eruda. Full API docs: [eruda.liriliri.io/docs](https://eruda.liriliri.io/docs/).
+
+Upstream demo: [eruda.liriliri.io](https://eruda.liriliri.io/)
+
+## What's different
+
+Compared with upstream Eruda, this fork adds:
+
+- Network panel sections: General, Query Parameters, Payload, Response Body
+- Network list options for **Full Name** and **Full URL**
+- Hide DevTools when clicking outside the panel
+- Entry button position stored in `sessionStorage` (cleared when the tab closes)
+- DOM highlighter via `luna-dom-highlighter`
+
+## Development
 
 ```bash
-npm install eruda --save-dev
+npm install
+npm run setup
+npm run dev
 ```
 
-Add this script to your page.
+Then open `http://localhost:8080`.
 
-```html
-<script src="node_modules/eruda/eruda.js"></script>
-<script>eruda.init();</script>
-```
+| Script | Description |
+| --- | --- |
+| `npm run dev` | webpack-dev-server |
+| `npm test` | Karma + Jasmine |
+| `npm run build` | production bundle in `dist/` |
+| `npm run lint` | ESLint |
 
-It's also available on [jsDelivr](http://www.jsdelivr.com/projects/eruda) and [cdnjs](https://cdnjs.com/libraries/eruda).
+Issues and PRs: [HydenLiu/eruda](https://github.com/HydenLiu/eruda/issues)
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script>
-```
+## Related
 
-For more detailed usage instructions, please read the documentation at [eruda.liriliri.io](https://eruda.liriliri.io/docs/)!
+- [eruda](https://github.com/liriliri/eruda): upstream project
+- [eruda-android](https://github.com/liriliri/eruda-android): WebView with Eruda loaded automatically
+- [chii](https://github.com/liriliri/chii): remote debugging
+- [luna](https://github.com/liriliri/luna): UI components used by Eruda
 
-## Related Projects
+## License
 
-* [eruda-android](https://github.com/liriliri/eruda-android): Simple webview with eruda loaded automatically.
-* [chii](https://github.com/liriliri/chii): Remote debugging tool.
-* [chobitsu](https://github.com/liriliri/chobitsu): Chrome devtools protocol JavaScript implementation.
-* [licia](https://github.com/liriliri/licia): Utility library used by eruda.
-* [luna](https://github.com/liriliri/luna): UI components used by eruda.
-* [vivy](https://github.com/liriliri/vivy-docs): Icon image generation.
-
-## Third Party
-
-* [eruda-pixel](https://github.com/Faithree/eruda-pixel): UI pixel restoration tool.
-* [eruda-webpack-plugin](https://github.com/huruji/eruda-webpack-plugin): Eruda webpack plugin.
-* [eruda-vue-devtools](https://github.com/Zippowxk/vue-devtools-plugin): Eruda Vue-devtools plugin.
-
-## Backers
-
-<a rel="noreferrer noopener" href="https://opencollective.com/eruda" target="_blank"><img src="https://opencollective.com/eruda/backers.svg?width=890"></a>
-
-## Contribution
-
-Read [Contributing Guide](https://eruda.liriliri.io/docs/contributing.html) for development setup instructions.
+MIT
