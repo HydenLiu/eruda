@@ -1,3 +1,7 @@
+## 3.5.3 (18 Sep 2026)
+
+* feat: enhance EntryBtn configuration to support session storage
+
 ## 3.5.2 (03 Sep 2026)
 
 * feat: hide DevTools when clicking outside the panel
