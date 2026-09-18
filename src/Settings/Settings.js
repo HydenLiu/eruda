@@ -1,6 +1,12 @@
 import Tool from '../DevTools/Tool'
 import $ from 'licia/$'
 import LocalStore from 'licia/LocalStore'
+import Store from 'licia/Store'
+import safeStorage from 'licia/safeStorage'
+import isEmpty from 'licia/isEmpty'
+import stringify from 'licia/stringify'
+import defaults from 'licia/defaults'
+import isObj from 'licia/isObj'
 import uniqId from 'licia/uniqId'
 import each from 'licia/each'
 import filter from 'licia/filter'
@@ -9,6 +15,27 @@ import contain from 'licia/contain'
 import clone from 'licia/clone'
 import evalCss from '../lib/evalCss'
 import LunaSetting from 'luna-setting'
+
+const sessionStorage = safeStorage('session')
+const SessionStore = Store.extend({
+  initialize: function SessionStore(name, data) {
+    this._name = name
+    data = data || {}
+    let saved = sessionStorage.getItem(name)
+    try {
+      saved = JSON.parse(saved)
+    } catch {
+      saved = {}
+    }
+    if (!isObj(saved)) saved = {}
+    data = defaults(saved, data)
+    this.callSuper(Store, 'initialize', [data])
+  },
+  save: function (data) {
+    if (isEmpty(data)) return sessionStorage.removeItem(this._name)
+    sessionStorage.setItem(this._name, stringify(data))
+  },
+})
 
 export default class Settings extends Tool {
   constructor() {
@@ -144,7 +171,11 @@ export default class Settings extends Tool {
       setting.config.set(setting.key, val)
     })
   }
-  static createCfg(name, data) {
-    return new LocalStore('eruda-' + name, data)
+  static createCfg(name, data, storage = 'local') {
+    const key = 'eruda-' + name
+    if (storage === 'session') {
+      return new SessionStore(key, data)
+    }
+    return new LocalStore(key, data)
   }
 }

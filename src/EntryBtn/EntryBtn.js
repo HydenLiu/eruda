@@ -156,10 +156,14 @@ export default class EntryBtn extends Emitter {
     window.addEventListener('resize', () => this._resetPos())
   }
   initCfg(settings) {
-    const cfg = (this.config = Settings.createCfg('entry-button', {
-      rememberPos: true,
-      pos: this._getDefPos(),
-    }))
+    const cfg = (this.config = Settings.createCfg(
+      'entry-button',
+      {
+        rememberPos: true,
+        pos: this._getDefPos(),
+      },
+      'session'
+    ))
 
     settings.switch(cfg, 'rememberPos', 'Remember Entry Button Position')
 
@@ -170,7 +174,7 @@ export default class EntryBtn extends Emitter {
 
     return {
       x: window.innerWidth - minWidth,
-      y: window.innerHeight - minWidth,
+      y: window.innerHeight / 2 - minWidth,
     }
   }
 }
