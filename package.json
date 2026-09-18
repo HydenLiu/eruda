@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hydenliu/eruda.git"
+    "url": "https://github.com/HydenLiu/eruda"
   },
   "keywords": [
     "console",
@@ -32,9 +32,9 @@
   "author": "hydenliu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hydenliu/eruda/issues"
+    "url": "https://github.com/HydenLiu/eruda/issues"
   },
-  "homepage": "https://github.com/hydenliu/eruda",
+  "homepage": "https://github.com/HydenLiu/eruda",
   "publishConfig": {
     "access": "public"
   },
